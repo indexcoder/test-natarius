@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Mail;
 
 class NotaryObserver {
     public function created(Notary $notary) {
-        Mail::to($notary->email)->send(new SendMessageMail($notary));
+        try {
+            Mail::to($notary->email)->send(new SendMessageMail($notary));
+        } catch (\Exception $e) {}
     }
 }
