@@ -13,19 +13,19 @@
         record_type: 'Доверенность'
     });
 
-    const error = ref(null);
+    const errors = ref(null);
     const isDisabled = ref(false);
 
     const emit = defineEmits(['addMessage']);
 
     const add = async () => {
-        error.value = null;
+        errors.value = null;
         try {
             isDisabled.value = true;
             let {data} = await notariesApi.storeMessages(inputForm.value);
             emit('addMessage', data)
         } catch (e) {
-            error.value = e.response.data;
+            errors.value = e.response.data.errors;
             isDisabled.value = false;
             return false;
         } finally {
@@ -35,11 +35,11 @@
 </script>
 
 <template>
-    <form @submit.prevent="add" method="post" autocomplete="off" class=" border border-gray-400 px-4 py-6 rounded-lg shadow-lg">
-        <vue-input id="name" type="string" labelText="Имя" v-model="inputForm.name"></vue-input>
-        <vue-input id="last_name" type="string" labelText="Фамиля" v-model="inputForm.last_name"></vue-input>
-        <vue-input id="email" type="email" labelText="E-mail" v-model="inputForm.email"></vue-input>
-        <vue-input-date labelText="Дата приема" v-model="inputForm.receipt_date"></vue-input-date>
+    <form @submit.prevent="add" method="post" autocomplete="off" class=" border border-gray-400 px-4 pt-6 pb-5 rounded-lg shadow-lg">
+        <vue-input id="name" type="string" labelText="Имя" v-model="inputForm.name" :errMessage="errors && errors.name[0]"></vue-input>
+        <vue-input id="last_name" type="string" labelText="Фамиля" v-model="inputForm.last_name" :errMessage="errors && errors.last_name[0]"></vue-input>
+        <vue-input id="email" type="email" labelText="E-mail" v-model="inputForm.email" :errMessage="errors && errors.email[0]"></vue-input>
+        <vue-input-date labelText="Дата приема" v-model="inputForm.receipt_date" :errMessage="errors && errors.receipt_date[0]"></vue-input-date>
         <div class="flex items-baseline mb-6">
             <label for="record_type" class="sm:mr-2 text-gray-700 flex-shrink-0 mb-1 sm:mb-0 block">Вид документа:</label>
             <select v-model="inputForm.record_type" id="record_type" class="w-full outline-none pl-2 pr-7 py-1 text-base font-normal text-gray-700 bg-white border-b border-gray-400 transition rounded-sm ease-in-out focus:border-blue-600">

@@ -37,7 +37,7 @@
         </div>
         <div class="col-span-12 md:col-span-6">
             <div v-if="loading">Loading ... </div>
-            <div v-else-if="error">Error </div>
+            <div v-else-if="error">error</div>
             <div v-else-if="messages && messages.data.length > 0">
                 <h2 class="mb-2 text-xl text-gray-700">Ранее отправленные запросы:</h2>
                 <message-list v-for="message in messages.data" :message="message"></message-list>

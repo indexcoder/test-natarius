@@ -25,11 +25,12 @@
                    :type="type"
                    :value="modelValue"
                    :required="required"
+                   @keyup="errMessage = null"
                    @change="$emit('update:modelValue', $event.target.value)"
-                   :class="[errMessage.length > 0 ? 'border-red-400' : 'border-gray-400']"
+                   :class="[errMessage ? 'border-red-400' : 'border-gray-400']"
                    class="w-full block px-2 py-1 font-normal text-gray-700 bg-white shadow-sm border-b rounded-sm focus:border-blue-600 focus:outline-none"
             />
-            <p v-if="errMessage.length > 0" v-text="errMessage" class="text-xs text-red-500 mt-1.5 pl-1"></p>
+            <p v-if="errMessage" v-text="errMessage" class="text-xs text-red-500 mt-1.5 pl-1"></p>
         </div>
     </div>
 </template>
