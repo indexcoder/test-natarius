@@ -1,0 +1,10 @@
+.pagination {
+    @apply flex items-center justify-between mt-4;
+}
+.page-item a {
+    @apply px-2 py-1 mb-2 block text-sm text-gray-700 bg-gray-50 shadow-md rounded-md hover:bg-slate-500 hover:text-white;
+}
+
+.page-item.active a {
+    @apply bg-slate-500 text-white;
+}

@@ -1,0 +1,31 @@
+@screen md {
+    .scrollbar-w-3::-webkit-scrollbar {
+        width: .8rem!important;
+        height: .8rem!important;
+    }
+
+    .scrollbar-track-gray-lighter::-webkit-scrollbar-track {
+        @apply bg-zinc-100 dark:bg-zinc-800 shadow;
+    }
+
+    .scrollbar-thumb-natural::-webkit-scrollbar-thumb {
+        @apply bg-neutral-400 dark:bg-zinc-600;
+    }
+
+    .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+        border-radius: .5rem!important;
+    }
+
+    .scrollbar-w-2::-webkit-scrollbar {
+        width: .5rem!important;
+        height: .5rem!important;
+    }
+
+    .scrollbar-thumb-gray::-webkit-scrollbar-thumb {
+        @apply bg-slate-500 dark:bg-zinc-600;
+    }
+}
+
+.bar-hidden::-webkit-scrollbar {
+    display: none;
+}
